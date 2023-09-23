@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     paths:
-      - 'CloudEdge-HomeAssignment/terraform/*.tf'
+      - 'C:\Users\Kobi\Desktop\Kobi\Git\CloudEdge-HomeAssignment\terraform\*.tf'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,17 +35,17 @@ jobs:
       - name: 'Terraform init'
         id: init
         run: |
-          cd CloudEdge-HomeAssignment/terraform
+          cd C:\Users\Kobi\Desktop\Kobi\Git\CloudEdge-HomeAssignment/terraform
           terraform init          
 
       - name: 'Terraform plan'
         id: plan
         run: |
-          cd CloudEdge-HomeAssignment/terraform
+          cd C:\Users\Kobi\Desktop\Kobi\Git\CloudEdge-HomeAssignment/terraform
           terraform plan
                     
       - name: 'Terraform apply'
         id: apply
         run: |
-          cd CloudEdge-HomeAssignment/terraform
+          cd C:\Users\Kobi\Desktop\Kobi\Git\CloudEdge-HomeAssignment/terraform
           terraform apply -auto-approve
