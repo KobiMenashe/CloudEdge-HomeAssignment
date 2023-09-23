@@ -1,43 +1,51 @@
-name: 'Terraform'
+# This is a basic workflow to help you get started with Actions
+
+name: KobiAssignment
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    paths:
+      - 'CloudEdge-HomeAssignment/terraform/*.tf'
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      TFAction:
-        description: "Terraform Action- Apply or Destroy"     
-        required: true
-        default: "apply"
-permissions:
-  contents: read
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  terraform:
-    name: 'Terraform'
+  # This workflow contains a single job called "build"
+  resourcegroups:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    environment: dev
+    
+    name: 'KobiAssignment'
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.MVP_SUBSCRIPTION }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      TerraformBackendStorageAccount: "sadevweu01"
-      TerraformBackendResourceGroup: "KobiAssignment"
-      TerraformBackendStorageContainer: "tfstatedevops"           
       
-    defaults:
-      run:
-        shell: bash
-steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-- name: Terraform Init
-      run: terraform init -backend-config=storage_account_name=$TerraformBackendStorageAccount -backend-config=container_name=$TerraformBackendStorageContainer -backend-config=key=dev.tfstate -backend-config=resource_group_name=$TerraformBackendResourceGroup -backend-config=subscription_id="$AZURE_SUBSCRIPTION_ID" -backend-config=tenant_id="$AZURE_TENANT_ID" -backend-config=client_id="$AZURE_CLIENT_ID" -backend-config=client_secret="$AZURE_CLIENT_SECRET"
-- name: Terraform Plan
-      run: terraform plan -out=plan.tfplan -input=false -var="location=eastus" -var="resource_group_name=tfdemo" -var="storage_account_name=tfdemoabcxxyg" -var="storage_account_tier=Standard" -var="virtual_network_name=myvnet"
-- name: Terraform Apply
-      if: ${{ inputs.TFAction == 'apply'}}  
-      run: terraform apply -input=false -auto-approve plan.tfplan
-- name: Terraform Destroy
-      if: ${{ inputs.TFAction == 'destroy' }} 
-      run: terraform destroy -input=false -auto-approve
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: 'Terraform init'
+        id: init
+        run: |
+          cd CloudEdge-HomeAssignment/terraform
+          terraform init          
+
+      - name: 'Terraform plan'
+        id: plan
+        run: |
+          cd CloudEdge-HomeAssignment/terraform
+          terraform plan
+                    
+      - name: 'Terraform apply'
+        id: apply
+        run: |
+          cd CloudEdge-HomeAssignment/terraform
+          terraform apply -auto-approve
