@@ -24,7 +24,7 @@ data "azurerm_resource_group" "rg" {
 
 #Create Virtual Network
 resource "azurerm_virtual_network" "vnet" {
-  name                = "kobi-vnet"
+  name                = "HubVNet"
   address_space       = ["192.168.0.0/16"]
   location            = "westeurope"
   resource_group_name = data.azurerm_resource_group.rg.name
