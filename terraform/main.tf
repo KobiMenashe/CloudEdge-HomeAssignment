@@ -17,9 +17,9 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
-#Create Resource Group
+# Data RG
 data "azurerm_resource_group" "rg" {
-  name     = "KobiAssignment"
+  name = "KobiAssignment"
 }
 
 #Create Virtual Network
