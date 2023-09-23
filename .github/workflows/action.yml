@@ -31,7 +31,6 @@ steps:
       
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-
 - name: Terraform Init
       run: terraform init -backend-config=storage_account_name=$TerraformBackendStorageAccount -backend-config=container_name=$TerraformBackendStorageContainer -backend-config=key=dev.tfstate -backend-config=resource_group_name=$TerraformBackendResourceGroup -backend-config=subscription_id="$AZURE_SUBSCRIPTION_ID" -backend-config=tenant_id="$AZURE_TENANT_ID" -backend-config=client_id="$AZURE_CLIENT_ID" -backend-config=client_secret="$AZURE_CLIENT_SECRET"
 - name: Terraform Plan
