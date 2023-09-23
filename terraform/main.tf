@@ -20,7 +20,6 @@ data "azurerm_client_config" "current" {}
 #Create Resource Group
 data "azurerm_resource_group" "rg" {
   name     = "KobiAssignment"
-  location = "westeurope"
 }
 
 #Create Virtual Network
