@@ -1,20 +1,20 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "KobiAssignment"
-    storage_account_name = "sadevweu01"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
-}
+# terraform {
+#   backend "azurerm" {
+#     resource_group_name  = "KobiAssignment"
+#     storage_account_name = "sadevweu01"
+#     container_name       = "tfstate"
+#     key                  = "terraform.tfstate"
+#   }
+# }
  
-provider "azurerm" {
-  # The "feature" block is required for AzureRM provider 2.x.
-  # If you're using version 1.x, the "features" block is not allowed.
-  version = "~>2.0"
-  features {}
-}
+# provider "azurerm" {
+#   # The "feature" block is required for AzureRM provider 2.x.
+#   # If you're using version 1.x, the "features" block is not allowed.
+#   version = "~>2.0"
+#   features {}
+# }
  
-data "azurerm_client_config" "current" {}
+# data "azurerm_client_config" "current" {}
  
 
 data "azurerm_resource_group" "rg" {
