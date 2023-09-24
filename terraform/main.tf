@@ -23,17 +23,17 @@ data "azurerm_resource_group" "rg" {
 }
 
 #Create Virtual Network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "HubVNet"
+resource "azurerm_virtual_network" "hub_vnet" {
+  name                = "hub-vnet"
   address_space       = ["192.168.0.0/16"]
   location            = "westeurope"
   resource_group_name = data.azurerm_resource_group.rg.name
 }
 
 # Create Subnet
-resource "azurerm_subnet" "subnet" {
-  name                 = "subnet"
+resource "azurerm_subnet" "hub_subnet" {
+  name                 = "hub-subnet"
   resource_group_name  = data.azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  virtual_network_name = azurerm_virtual_network.hub_vnet.name
   address_prefixes     = ["192.168.1.0/24"]
 }
