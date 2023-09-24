@@ -37,3 +37,21 @@ resource "azurerm_subnet" "hub_subnet" {
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
   address_prefixes     = ["192.168.1.0/24"]
 }
+
+#Create AKS
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = "kobi-aks"
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
+  dns_prefix          = "kobik8scluster"
+
+  default_node_pool {
+    name       = "default"
+    node_count = "2"
+    vm_size    = "standard_d2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
