@@ -11,7 +11,6 @@ provider "azurerm" {
   # The "feature" block is required for AzureRM provider 2.x.
   # If you're using version 1.x, the "features" block is not allowed.
   version = "~>3.74.0"
-  # skip_provider_registration = true
   features {}
 }
 
@@ -22,7 +21,7 @@ data "azurerm_resource_group" "rg" {
   name = "KobiAssignment"
 }
 
-#Create Virtual Network
+# Create Hub Virtual Network
 resource "azurerm_virtual_network" "hub_vnet" {
   name                = "hub-vnet"
   address_space       = ["192.168.0.0/16"]
@@ -30,7 +29,7 @@ resource "azurerm_virtual_network" "hub_vnet" {
   resource_group_name = data.azurerm_resource_group.rg.name
 }
 
-# Create Subnet
+# Create Hub Subnet
 resource "azurerm_subnet" "hub_subnet" {
   name                 = "hub-subnet"
   resource_group_name  = data.azurerm_resource_group.rg.name
@@ -38,7 +37,7 @@ resource "azurerm_subnet" "hub_subnet" {
   address_prefixes     = ["192.168.1.0/24"]
 }
 
-#Create AKS
+# Create AKS
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "kobi-aks"
   location            = data.azurerm_resource_group.rg.location
