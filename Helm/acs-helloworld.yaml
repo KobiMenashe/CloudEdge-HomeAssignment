@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acs-helloworld-{{.Release.Name}}
+  name: aks-helloworld-one  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: acs-helloworld-{{.Release.Name}}
+      app: aks-helloworld-one
   template:
     metadata:
       labels:
-        app: acs-helloworld-{{.Release.Name}}
+        app: aks-helloworld-one
     spec:
       containers:
-      - name: acs-helloworld-{{.Release.Name}}
-        image: neilpeterson/aks-helloworld:v1
+      - name: aks-helloworld-one
+        image: mcr.microsoft.com/azuredocs/aks-helloworld:v1
         ports:
         - containerPort: 80
         env:
         - name: TITLE
-          value: {{ .Values.title }}
+          value: "Welcome to Azure Kubernetes Service (AKS)"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.serviceName }}
+  name: aks-helloworld-one  
 spec:
-  type: {{ .Values.serviceType }}
+  type: ClusterIP
   ports:
   - port: 80
   selector:
-    app: acs-helloworld-{{.Release.Name}}
+    app: aks-helloworld-one
