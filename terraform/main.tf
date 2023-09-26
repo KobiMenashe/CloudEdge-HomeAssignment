@@ -78,7 +78,7 @@ resource "azurerm_key_vault" "kv" {
 
 data "azurerm_key_vault_secret" "kobi_pass_secret" {
   name         = "KobiPassVM"
-  key_vault_id = data.azurerm_key_vault.kv.id
+  key_vault_id = azurerm_key_vault.kv.id
 }
 
 # Create Bastion
