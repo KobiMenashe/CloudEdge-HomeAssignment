@@ -80,9 +80,11 @@ resource "azurerm_key_vault" "kv" {
     key_permissions = [
       "Get",
     ]
+    
     secret_permissions = [
       "Get",
     ]
+
     storage_permissions = [
       "Get",
     ]
