@@ -76,68 +76,68 @@ resource "azurerm_key_vault" "kv" {
   sku_name                    = "standard"
 }
 
-# data "azurerm_key_vault_secret" "kobi_pass_secret" {
-#   name         = "KobiPassVM"
-#   key_vault_id = data.azurerm_key_vault.kv.id
-# }
+data "azurerm_key_vault_secret" "kobi_pass_secret" {
+  name         = "KobiPassVM"
+  key_vault_id = data.azurerm_key_vault.kv.id
+}
 
-# # Create Bastion
-# resource "azurerm_bastion_host" "BastionSubnet" {
-#   name                = "AzureBastionSubnet"
-#   location            = data.azurerm_resource_group.rg.location
-#   resource_group_name = data.azurerm_resource_group.rg.name
+# Create Bastion
+resource "azurerm_bastion_host" "BastionSubnet" {
+  name                = "AzureBastionSubnet"
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
 
-#   ip_configuration {
-#     name                 = "configuration"
-#     subnet_id            = azurerm_subnet.hub_subnet.id
-#     public_ip_address_id = azurerm_public_ip.vm_pip.id
-#   }
-# }
+  ip_configuration {
+    name                 = "configuration"
+    subnet_id            = azurerm_subnet.hub_subnet.id
+    public_ip_address_id = azurerm_public_ip.vm_pip.id
+  }
+}
 
-# # Create Network Interface
-# resource "azurerm_network_interface" "vm_interface" {
-#   name                = "kobivm-nic"
-#   location            = data.azurerm_resource_group.rg.location
-#   resource_group_name = data.azurerm_resource_group.rg.name
+# Create Network Interface
+resource "azurerm_network_interface" "vm_interface" {
+  name                = "kobivm-nic"
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
 
-#   ip_configuration {
-#     name                          = "configuration1"
-#     subnet_id                     = azurerm_subnet.hub_subnet.id
-#     private_ip_address_allocation = "Static"
-#     private_ip_address            = "192.168.1.8"
-#   }
-# }
+  ip_configuration {
+    name                          = "configuration1"
+    subnet_id                     = azurerm_subnet.hub_subnet.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "192.168.1.8"
+  }
+}
 
-# # Create PIP
-# resource "azurerm_public_ip" "vm_pip" {
-#   name                = "kobi-vm-pip"
-#   resource_group_name = data.azurerm_resource_group.rg.name
-#   location            = data.azurerm_resource_group.rg.location
-#   allocation_method   = "Static"
-#   sku                 = "Standard"
-# }
+# Create PIP
+resource "azurerm_public_ip" "vm_pip" {
+  name                = "kobi-vm-pip"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 
-# # Create VM
-# resource "azurerm_windows_virtual_machine" "vm" {
-#   name                = "kobi-vm"
-#   resource_group_name = data.azurerm_resource_group.rg.name
-#   location            = data.azurerm_resource_group.rg.location
-#   size                = "Standard_F2"
-#   admin_username      = "kobi"
-#   admin_password      = data.azurerm_key_vault_secret.kobi_pass_secret.value
-#   disable_password_authentication = "false"
-#   network_interface_ids = [
-#     azurerm_network_interface.vm_interface.id,
-#   ]
-#   os_disk {
-#     caching              = "ReadWrite"
-#     storage_account_type = "Standard_LRS"
-#   }
+# Create VM
+resource "azurerm_windows_virtual_machine" "vm" {
+  name                = "kobi-vm"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
+  size                = "Standard_F2"
+  admin_username      = "kobi"
+  admin_password      = data.azurerm_key_vault_secret.kobi_pass_secret.value
+  disable_password_authentication = "false"
+  network_interface_ids = [
+    azurerm_network_interface.vm_interface.id,
+  ]
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
 
-#   source_image_reference {
-#     publisher = "MicrosoftWindowsServer"
-#     offer     = "WindowsServer"
-#     sku       = "2016-Datacenter"
-#     version   = "latest"
-#   }
-# }
+  source_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2016-Datacenter"
+    version   = "latest"
+  }
+}
