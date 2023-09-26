@@ -89,7 +89,7 @@ resource "azurerm_bastion_host" "BastionSubnet" {
 
   ip_configuration {
     name                 = "configuration"
-    subnet_id            = azurerm_subnet.hub_subnet.id
+    subnet_id            = azurerm_subnet.AzureBastion_subnet.id
     public_ip_address_id = azurerm_public_ip.vm_pip.id
   }
 }
