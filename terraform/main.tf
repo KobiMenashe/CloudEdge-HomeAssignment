@@ -62,10 +62,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
-
-  # ingress_application_gateway {
-  
-  # }
 }
 
 # Create Key Vault
