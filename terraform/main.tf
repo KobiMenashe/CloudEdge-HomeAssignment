@@ -125,10 +125,10 @@ resource "azurerm_windows_virtual_machine" "vm" {
   size                = "Standard_F2"
   admin_username      = "kobi"
   admin_password      = data.azurerm_key_vault_secret.kobi_pass_secret.value
-  disable_password_authentication = "false"
   network_interface_ids = [
-    azurerm_network_interface.vm_interface.id,
+    azurerm_network_interface.example.id,
   ]
+
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
