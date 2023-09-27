@@ -42,7 +42,7 @@ resource "azurerm_subnet" "front_subnet" {
   name                 = "front-subnet"
   resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
-  address_prefixes     = ["192.168.2.0/24"]
+  address_prefixes     = ["192.168.3.0/24"]
 }
 
 # Create App GW Subnet - Back
@@ -50,7 +50,7 @@ resource "azurerm_subnet" "back_subnet" {
   name                 = "back-subnet"
   resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.hub_vnet.name
-  address_prefixes     = ["192.168.3.0/24"]
+  address_prefixes     = ["192.168.4.0/24"]
 }
 
 # # Create Bastion Subnet
