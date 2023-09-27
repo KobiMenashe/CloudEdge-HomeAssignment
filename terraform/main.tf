@@ -87,7 +87,7 @@ locals {
   frontend_ip_configuration_name = "${azurerm_virtual_network.hub_vnet.name}-feip"
   http_setting_name              = "${azurerm_virtual_network.hub_vnet.name}-helloWorld-http-setting"
   listener_name                  = "${azurerm_virtual_network.hub_vnet.name}-helloWorld-http-listener"
-  request_routing_rule_name      = "${azurerm_virtual_network.hub_vnet.name}-rqrt"
+  request_routing_rule_name      = "${azurerm_virtual_network.hub_vnet.name}-helloWorld-rule"
   redirect_configuration_name    = "${azurerm_virtual_network.hub_vnet.name}-rdrcfg"
 }
 
@@ -141,7 +141,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   request_routing_rule {
     name                       = local.request_routing_rule_name
-    priority                   = 9
+    priority                   = 200
     rule_type                  = "Basic"
     http_listener_name         = local.listener_name
     backend_address_pool_name  = local.backend_address_pool_name
