@@ -85,8 +85,8 @@ locals {
   backend_address_pool_name      = "${azurerm_virtual_network.hub_vnet.name}-nginx-pool"
   frontend_port_name             = "${azurerm_virtual_network.hub_vnet.name}-feport"
   frontend_ip_configuration_name = "${azurerm_virtual_network.hub_vnet.name}-feip"
-  http_setting_name              = "${azurerm_virtual_network.hub_vnet.name}-helloWorldHTTP-setting"
-  listener_name                  = "${azurerm_virtual_network.hub_vnet.name}-httplstn"
+  http_setting_name              = "${azurerm_virtual_network.hub_vnet.name}-helloWorld-http-setting"
+  listener_name                  = "${azurerm_virtual_network.hub_vnet.name}-helloWorld-http-listener"
   request_routing_rule_name      = "${azurerm_virtual_network.hub_vnet.name}-rqrt"
   redirect_configuration_name    = "${azurerm_virtual_network.hub_vnet.name}-rdrcfg"
 }
@@ -136,6 +136,7 @@ resource "azurerm_application_gateway" "appgw" {
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = local.frontend_port_name
     protocol                       = "Http"
+    host_name                      = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   request_routing_rule {
