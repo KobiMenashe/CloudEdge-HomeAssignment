@@ -78,7 +78,7 @@ resource "azurerm_public_ip" "gw_pip" {
   location            = data.azurerm_resource_group.rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
-  domain_name_label   = "ingress.kobidemo"
+  domain_name_label   = "ingresskobidemo"
 }
 
 locals {
