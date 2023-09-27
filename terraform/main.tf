@@ -158,6 +158,16 @@ resource "azurerm_public_ip" "gw_pip" {
   sku                 = "Standard"
 }
 
+locals {
+  backend_address_pool_name      = "${azurerm_virtual_network.hub_vnet.name}-beap"
+  frontend_port_name             = "${azurerm_virtual_network.hub_vnet.name}-feport"
+  frontend_ip_configuration_name = "${azurerm_virtual_network.hub_vnet.name}-feip"
+  http_setting_name              = "${azurerm_virtual_network.hub_vnet.name}-be-htst"
+  listener_name                  = "${azurerm_virtual_network.hub_vnet.name}-httplstn"
+  request_routing_rule_name      = "${azurerm_virtual_network.hub_vnet.name}-rqrt"
+  redirect_configuration_name    = "${azurerm_virtual_network.hub_vnet.name}-rdrcfg"
+}
+
 resource "azurerm_application_gateway" "appgw" {
   name                = "kobi-appgateway"
   resource_group_name = data.azurerm_resource_group.rg.name
