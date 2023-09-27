@@ -82,7 +82,7 @@ resource "azurerm_public_ip" "gw_pip" {
 }
 
 locals {
-  backend_address_pool_name      = "${azurerm_virtual_network.hub_vnet.name}-beap"
+  backend_address_pool_name      = "${azurerm_virtual_network.hub_vnet.name}-nginx-pool"
   frontend_port_name             = "${azurerm_virtual_network.hub_vnet.name}-feport"
   frontend_ip_configuration_name = "${azurerm_virtual_network.hub_vnet.name}-feip"
   http_setting_name              = "${azurerm_virtual_network.hub_vnet.name}-be-htst"
@@ -118,16 +118,18 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   backend_address_pool {
-    name = local.backend_address_pool_name
+    name         = local.backend_address_pool_name
+    ip_addresses = "10.244.0.12"
   }
 
   backend_http_settings {
     name                  = local.http_setting_name
     cookie_based_affinity = "Disabled"
-    path                  = "/path1/"
+    path                  = "/hello-world-one"
     port                  = 80
     protocol              = "Http"
     request_timeout       = 60
+    host_name             = ""
   }
 
   http_listener {
