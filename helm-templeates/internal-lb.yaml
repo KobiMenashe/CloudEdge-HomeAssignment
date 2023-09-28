@@ -14,7 +14,7 @@ metadata:
   namespace: ingress
 spec:
   type: LoadBalancer
-  loadBalancerIP: 10.224.0.12
+  loadBalancerIP: 10.244.1.5
   externalTrafficPolicy: Local
   ports:
     - name: http
