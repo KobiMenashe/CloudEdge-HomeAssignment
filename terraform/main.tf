@@ -127,7 +127,7 @@ resource "azurerm_application_gateway" "appgw" {
     cookie_based_affinity = "Disabled"
     port                  = 80
     protocol              = "Http"
-    request_timeout       = 60
+    request_timeout       = 30
     host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
