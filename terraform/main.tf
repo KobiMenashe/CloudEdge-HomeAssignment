@@ -65,21 +65,21 @@ resource "azurerm_kubernetes_cluster" "aks" {
     node_count = "2"
     vm_size    = "standard_d2_v2"
   }
-  
+
   identity {
     type = "SystemAssigned"
   }
   
   addon_profile {
+
     ingress_application_gateway {
       enabled      = true
       gateway_name = "kobi-appgateway"
-      subnet_cidr = "10.224.1.0/16"
+      subnet_cidr = "10.224.0.0/16"
     }
   }
-  
-}
 
+}
 # Create PIP
 resource "azurerm_public_ip" "gw_pip" {
   name                = "kobi-gw-pip"
