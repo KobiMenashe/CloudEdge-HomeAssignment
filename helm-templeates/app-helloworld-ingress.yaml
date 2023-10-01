@@ -15,8 +15,8 @@ spec:
       port:
         number: 80
   rules:
-  - host: ingresskobidemo.westeurope.cloudapp.azure.com
-    http:
+  # - host: ingresskobidemo.westeurope.cloudapp.azure.com
+  -  http:
       paths:
       - backend:
           service:
