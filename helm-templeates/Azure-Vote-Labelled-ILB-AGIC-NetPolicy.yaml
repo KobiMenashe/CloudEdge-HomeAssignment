@@ -45,7 +45,8 @@ metadata:
     appgw.ingress.kubernetes.io/use-private-ip: "false"
 spec:
   rules:
-  -  http:
+  - host: ingresskobidemo.westeurope.cloudapp.azure.com
+    http:
       paths:
       - path: /
         pathType: Prefix
