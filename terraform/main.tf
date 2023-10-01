@@ -83,7 +83,7 @@ resource "azurerm_public_ip" "gw_pip" {
   location            = data.azurerm_resource_group.rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
-  # domain_name_label   = "ingresskobidemo"
+  domain_name_label   = "ingresskobidemo"
 }
 
 locals {
@@ -133,7 +133,7 @@ resource "azurerm_application_gateway" "appgw" {
     port                  = 80
     protocol              = "Http"
     request_timeout       = 30
-    host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
+    # host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   http_listener {
