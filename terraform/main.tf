@@ -71,7 +71,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   ingress_application_gateway {
-    subnet_cidr = ["10.224.1.0/16"]
+    subnet_cidr = "10.224.1.0/16"
   }
 
 }
