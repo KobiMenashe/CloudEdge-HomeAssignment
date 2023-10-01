@@ -130,8 +130,8 @@ resource "azurerm_application_gateway" "appgw" {
   backend_http_settings {
     name                  = local.http_setting_name
     cookie_based_affinity = "Disabled"
-    port                  = 443
-    protocol              = "Https"
+    port                  = 80
+    protocol              = "Http"
     request_timeout       = 30
     host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
