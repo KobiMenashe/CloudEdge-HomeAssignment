@@ -11,7 +11,7 @@ spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: aks-helloworld-one
+      name: aks-helloworld-one-svc
       port:
         number: 80
   rules:
@@ -20,8 +20,8 @@ spec:
       paths:
       - backend:
           service:
-            name: aks-helloworld-one
+            name: aks-helloworld-one-svc
             port:
               number: 80
-        path: /hello-world-one
+        path: /
         pathType: Prefix

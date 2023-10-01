@@ -122,10 +122,10 @@ resource "azurerm_application_gateway" "appgw" {
     public_ip_address_id = azurerm_public_ip.gw_pip.id
   }
 
-  backend_address_pool {
-    name         = local.backend_address_pool_name
-    ip_addresses = ["10.224.0.10"]
-  }
+  # backend_address_pool {
+  #   name         = local.backend_address_pool_name
+  #   ip_addresses = ["10.224.0.10"]
+  # }
 
   backend_http_settings {
     name                  = local.http_setting_name
