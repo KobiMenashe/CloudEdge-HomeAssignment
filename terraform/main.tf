@@ -70,8 +70,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
-  ingress_application_gateway  {
-    subnet_cidr = ["10.224.1.0/16"]
+  gateway_name  {
+    subnet_cidr = "kobi-appgateway"
   }
 
 }
