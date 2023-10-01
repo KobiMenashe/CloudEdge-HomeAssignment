@@ -122,16 +122,16 @@ resource "azurerm_application_gateway" "appgw" {
     public_ip_address_id = azurerm_public_ip.gw_pip.id
   }
 
-  # backend_address_pool {
-  #   name         = local.backend_address_pool_name
-  #   ip_addresses = ["10.224.0.10"]
-  # }
+  backend_address_pool {
+    name         = local.backend_address_pool_name
+    ip_addresses = ["10.224.0.10"]
+  }
 
   backend_http_settings {
     name                  = local.http_setting_name
     cookie_based_affinity = "Disabled"
-    port                  = 80
-    protocol              = "Http"
+    port                  = 443
+    protocol              = "Https"
     request_timeout       = 30
     host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
