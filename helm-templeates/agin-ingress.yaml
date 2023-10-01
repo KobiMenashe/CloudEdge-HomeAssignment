@@ -14,7 +14,7 @@ spec:
   #       - ingresskobidemo.westeurope.cloudapp.azure.com
   rules:
   - host: ingresskobidemo.westeurope.cloudapp.azure.com
-  - http:
+    http:
       paths:
       # - path: /hello-world-one
       - path: /
@@ -24,3 +24,4 @@ spec:
             name: aks-helloworld-one-svc
             port:
               number: 80
+ingressClassName: nginx
