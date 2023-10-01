@@ -70,9 +70,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
-  ingress_application_gateway  {
+  ingress_application_gateway {
     subnet_cidr = ["10.224.1.0/16"]
-
   }
 
 }
