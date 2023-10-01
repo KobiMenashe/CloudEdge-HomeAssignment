@@ -83,7 +83,7 @@ resource "azurerm_public_ip" "gw_pip" {
   location            = data.azurerm_resource_group.rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
-  # domain_name_label   = "ingresskobidemo"
+  domain_name_label   = "ingresskobidemo"
 }
 
 locals {
@@ -124,7 +124,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   backend_address_pool {
     name         = local.backend_address_pool_name
-    ip_addresses = ["10.224.0.6"]
+    ip_addresses = ["10.224.1.16"]
   }
 
   backend_http_settings {
@@ -133,7 +133,7 @@ resource "azurerm_application_gateway" "appgw" {
     port                  = 80
     protocol              = "Http"
     request_timeout       = 30
-    # host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
+    host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   http_listener {
@@ -141,7 +141,7 @@ resource "azurerm_application_gateway" "appgw" {
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = local.frontend_port_name
     protocol                       = "Http"
-    # host_name                      = "ingresskobidemo.westeurope.cloudapp.azure.com"
+    host_name                      = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   request_routing_rule {
