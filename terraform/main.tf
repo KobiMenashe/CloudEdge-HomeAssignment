@@ -65,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     node_count = "2"
     vm_size    = "standard_d2_v2"
   }
-
+  
   identity {
     type = "SystemAssigned"
   }
@@ -77,6 +77,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
       subnet_cidr = "10.224.1.0/16"
     }
   }
+  
 }
 
 # Create PIP
