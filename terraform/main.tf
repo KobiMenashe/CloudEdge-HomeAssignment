@@ -69,12 +69,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
-  
+
   ingress_application_gateway  {
     subnet_cidr = ["10.224.1.0/16"]
   }
 
 }
+
 # Create PIP
 resource "azurerm_public_ip" "gw_pip" {
   name                = "kobi-gw-pip"
