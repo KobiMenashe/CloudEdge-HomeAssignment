@@ -70,14 +70,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
   
-  addon_profile {
-
-    ingress_application_gateway {
-      enabled      = true
-      gateway_name = "kobi-appgateway"
-      subnet_cidr = "10.224.0.0/16"
+  ingress_application_gateway  {
+    subnet_cidr = ["10.224.1.0/16"]
     }
-  }
 
 }
 # Create PIP
