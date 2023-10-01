@@ -71,7 +71,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   gateway_name  {
-    subnet_cidr = "kobi-appgateway"
+    gateway_name = "kobi-appgateway"
   }
 
 }
