@@ -70,7 +70,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
-  gateway_name  {
+  gateway_name {
     gateway_name = "kobi-appgateway"
   }
 
