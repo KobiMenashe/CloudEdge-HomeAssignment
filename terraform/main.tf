@@ -71,7 +71,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   ingress_application_gateway {
-    gateway_id   = "/subscriptions/38e71e07-c250-48dd-b02c-08bfe20c73d0/resourceGroups/KobiAssignment/providers/Microsoft.Network/applicationGateways/kobi-appgateway"
+    gateway_id = "/subscriptions/38e71e07-c250-48dd-b02c-08bfe20c73d0/resourceGroups/KobiAssignment/providers/Microsoft.Network/applicationGateways/kobi-appgateway"
   }
 
 }
