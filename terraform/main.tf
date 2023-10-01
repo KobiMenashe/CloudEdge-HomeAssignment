@@ -124,7 +124,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   backend_address_pool {
     name         = local.backend_address_pool_name
-    ip_addresses = ["10.224.1.16"]
+    ip_addresses = ["10.224.1.17"]
   }
 
   backend_http_settings {
