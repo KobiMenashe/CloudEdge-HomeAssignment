@@ -162,7 +162,7 @@ provider "helm" {
 
 resource "helm_release" "helm_helloworld" {
   name       = "aks-helloworld-one-test"
-  repository = "https://github.com/Azure-Samples/helm-charts/tree/master/chart-source"
+  repository = "https://azure-samples.github.io/helm-charts/"
   chart      = "azure-samples/aks-helloworld"
   namespace  = "ingress"
 }
