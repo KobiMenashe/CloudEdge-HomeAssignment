@@ -153,3 +153,25 @@ resource "azurerm_application_gateway" "appgw" {
     backend_http_settings_name = local.http_setting_name
   }
 }
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
+resource "helm_release" "helm_helloworld" {
+  name       = "aks-helloworld-one-test"
+
+  repository = "https://azure-samples.github.io/helm-charts/"
+  chart      = "azure-samples/aks-helloworld"
+  namespace  = "ingress"
+}
+
+resource "helm_release" "nginx_ingress" {
+  name       = "aks-helloworld-one-ingress-test"
+
+  repository = "https://helm.nginx.com/stable"
+  chart      = "nginx-stable/nginx-ingress"
+  namespace  = "ingress"
+}

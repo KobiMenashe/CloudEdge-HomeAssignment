@@ -1,0 +1,10 @@
+# Default values for kobichart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# UI controll
+title: "Welcome to Azure Kubernetes Service (AKS)"
+
+# Service controlls
+serviceName: aks-helloworld
+serviceType: ClusterIP
