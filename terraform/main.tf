@@ -162,14 +162,14 @@ provider "helm" {
 
 resource "helm_release" "helm_helloworld" {
   name       = "aks-helloworld-one-test"
-  repository = "https://azure-samples.github.io/helm-charts/"
+  repository = "https://github.com/Azure-Samples/helm-charts/tree/master/chart-source/aks-helloworld"
   chart      = "azure-samples/aks-helloworld"
   namespace  = "ingress"
 }
 
-resource "helm_release" "nginx_ingress" {
-  name       = "aks-helloworld-one-ingress-test"
-  repository = "https://helm.nginx.com/stable"
-  chart      = "nginx-stable/nginx-ingress"
-  namespace  = "ingress"
-}
+# resource "helm_release" "nginx_ingress" {
+#   name       = "aks-helloworld-one-ingress-test"
+#   repository = "https://helm.nginx.com/stable"
+#   chart      = "nginx-stable/nginx-ingress"
+#   namespace  = "ingress"
+# }
