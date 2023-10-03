@@ -134,7 +134,6 @@ resource "azurerm_application_gateway" "appgw" {
     port                  = 80
     protocol              = "Http"
     request_timeout       = 30
-    # host_name             = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   http_listener {
@@ -142,7 +141,6 @@ resource "azurerm_application_gateway" "appgw" {
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = local.frontend_port_name
     protocol                       = "Http"
-    # host_name                      = "ingresskobidemo.westeurope.cloudapp.azure.com"
   }
 
   request_routing_rule {
