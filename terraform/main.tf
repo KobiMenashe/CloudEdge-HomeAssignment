@@ -86,6 +86,7 @@ resource "azurerm_public_ip" "gw_pip" {
   domain_name_label   = "ingresskobidemo"
 }
 
+# Create App gateway
 locals {
   backend_address_pool_name      = "${azurerm_virtual_network.hub_vnet.name}-nginx-pool"
   frontend_port_name             = "${azurerm_virtual_network.hub_vnet.name}-feport"
